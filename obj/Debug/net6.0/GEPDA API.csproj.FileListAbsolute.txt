@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 C:\Users\YEFERSON\source\repos\GEPDA API\bin\Debug\net6.0\appsettings.Development.json
 C:\Users\YEFERSON\source\repos\GEPDA API\bin\Debug\net6.0\appsettings.json
 C:\Users\YEFERSON\source\repos\GEPDA API\bin\Debug\net6.0\GEPDA API.exe
@@ -265,3 +266,32 @@ C:\Users\YEFERSON\source\repos\GEPDA API\obj\Debug\net6.0\refint\GEPDA API.dll
 C:\Users\YEFERSON\source\repos\GEPDA API\obj\Debug\net6.0\GEPDA API.pdb
 C:\Users\YEFERSON\source\repos\GEPDA API\obj\Debug\net6.0\GEPDA API.genruntimeconfig.cache
 C:\Users\YEFERSON\source\repos\GEPDA API\obj\Debug\net6.0\ref\GEPDA API.dll
+=======
+C:\Users\Kevin\Desktop\GEPDA_API\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\Kevin\Desktop\GEPDA_API\bin\Debug\net6.0\appsettings.json
+C:\Users\Kevin\Desktop\GEPDA_API\bin\Debug\net6.0\GEPDA API.exe
+C:\Users\Kevin\Desktop\GEPDA_API\bin\Debug\net6.0\GEPDA API.deps.json
+C:\Users\Kevin\Desktop\GEPDA_API\bin\Debug\net6.0\GEPDA API.runtimeconfig.json
+C:\Users\Kevin\Desktop\GEPDA_API\bin\Debug\net6.0\GEPDA API.dll
+C:\Users\Kevin\Desktop\GEPDA_API\bin\Debug\net6.0\GEPDA API.pdb
+C:\Users\Kevin\Desktop\GEPDA_API\bin\Debug\net6.0\Microsoft.OpenApi.dll
+C:\Users\Kevin\Desktop\GEPDA_API\bin\Debug\net6.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Users\Kevin\Desktop\GEPDA_API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Users\Kevin\Desktop\GEPDA_API\bin\Debug\net6.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\GEPDA API.csproj.AssemblyReference.cache
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\GEPDA API.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\GEPDA API.AssemblyInfoInputs.cache
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\GEPDA API.AssemblyInfo.cs
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\GEPDA API.csproj.CoreCompileInputs.cache
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\GEPDA API.MvcApplicationPartsAssemblyInfo.cs
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\GEPDA API.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\scopedcss\bundle\GEPDA API.styles.css
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\GEPDA API.csproj.CopyComplete
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\GEPDA API.dll
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\refint\GEPDA API.dll
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\GEPDA API.pdb
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\GEPDA API.genruntimeconfig.cache
+C:\Users\Kevin\Desktop\GEPDA_API\obj\Debug\net6.0\ref\GEPDA API.dll
+>>>>>>> 74cd813b126984172ba527d90217ca90f4c7d560
