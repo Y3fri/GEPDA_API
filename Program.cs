@@ -33,6 +33,8 @@ builder.Services.AddCors(options =>
 
 
 builder.Services.AddScoped<ISsoUsuarioService, SsoUsuarioService>();
+builder.Services.AddScoped<IDepartamentoService, DepartamentoService>();
+builder.Services.AddScoped<IMunicipioService, MunicipioService>();
 
 builder.Services.AddControllersWithViews()
     .AddNewtonsoftJson(options =>
