@@ -1,6 +1,5 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "dzwXYj5dzsduuWZXeXu0QCESCdp/sFc8BemyebVaGUzx3GCSRbnSNxmQrBmBT9PpKZ1jyTeaKyGmQWXv3uMKxA==",
   "success": true,
   "projectFilePath": "C:\\Users\\YEFERSON\\source\\repos\\GEPDA API\\GEPDA API.csproj",
@@ -185,18 +184,6 @@
     "C:\\Users\\YEFERSON\\.nuget\\packages\\system.windows.extensions\\6.0.0\\system.windows.extensions.6.0.0.nupkg.sha512",
     "C:\\Users\\YEFERSON\\.nuget\\packages\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Users\\YEFERSON\\.nuget\\packages\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512"
-=======
-  "dgSpecHash": "tlxGEl1MCZQ0hPszCB0hi1n21+CKfVb0Z3LikkaBo5bD8K1PVFamzKqpOqOwEjWfEilZRYoAOjCXfdzq2AHeZg==",
-  "success": true,
-  "projectFilePath": "C:\\Users\\Kevin\\Desktop\\GEPDA_API\\GEPDA API.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Kevin\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
-    "C:\\Users\\Kevin\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
-    "C:\\Users\\Kevin\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
-    "C:\\Users\\Kevin\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
-    "C:\\Users\\Kevin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
-    "C:\\Users\\Kevin\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
->>>>>>> 74cd813b126984172ba527d90217ca90f4c7d560
   ],
   "logs": []
 }

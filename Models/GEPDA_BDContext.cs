@@ -267,7 +267,14 @@ namespace GEPDA_API.Models
 
                 entity.Property(e => e.AspPrograma).HasColumnName("asp_programa");
 
+                entity.Property(e => e.AspPromedio).HasColumnName("asp_promedio");
+
                 entity.Property(e => e.AspSede).HasColumnName("asp_sede");
+
+                entity.Property(e => e.AspTelefono)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("asp_telefono");
 
                 entity.HasOne(d => d.AspDniNavigation)
                     .WithMany(p => p.SedeProgramaAspirantes)

@@ -35,6 +35,12 @@ builder.Services.AddCors(options =>
 builder.Services.AddScoped<ISsoUsuarioService, SsoUsuarioService>();
 builder.Services.AddScoped<IDepartamentoService, DepartamentoService>();
 builder.Services.AddScoped<IMunicipioService, MunicipioService>();
+builder.Services.AddScoped<IUniversidadService, UniversidadService>();
+builder.Services.AddScoped<ISedeService, SedeService>();
+builder.Services.AddScoped<IProgramaService, ProgramaService>();
+builder.Services.AddScoped<ICriterioService, CriterioService>();
+builder.Services.AddScoped<IProgramaService, ProgramaService>();
+builder.Services.AddScoped<IAspiranteService, AspiranteService>();
 
 builder.Services.AddControllersWithViews()
     .AddNewtonsoftJson(options =>

@@ -1,7 +1,6 @@
 {
   "format": 1,
   "restore": {
-<<<<<<< HEAD
     "C:\\Users\\YEFERSON\\source\\repos\\GEPDA API\\GEPDA API.csproj": {}
   },
   "projects": {
@@ -16,22 +15,6 @@
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\YEFERSON\\AppData\\Roaming\\NuGet\\NuGet.Config",
-=======
-    "C:\\Users\\Kevin\\Desktop\\GEPDA_API\\GEPDA API.csproj": {}
-  },
-  "projects": {
-    "C:\\Users\\Kevin\\Desktop\\GEPDA_API\\GEPDA API.csproj": {
-      "version": "1.0.0",
-      "restore": {
-        "projectUniqueName": "C:\\Users\\Kevin\\Desktop\\GEPDA_API\\GEPDA API.csproj",
-        "projectName": "GEPDA API",
-        "projectPath": "C:\\Users\\Kevin\\Desktop\\GEPDA_API\\GEPDA API.csproj",
-        "packagesPath": "C:\\Users\\Kevin\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kevin\\Desktop\\GEPDA_API\\obj\\",
-        "projectStyle": "PackageReference",
-        "configFilePaths": [
-          "C:\\Users\\Kevin\\AppData\\Roaming\\NuGet\\NuGet.Config",
->>>>>>> 74cd813b126984172ba527d90217ca90f4c7d560
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -57,7 +40,6 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "dependencies": {
-<<<<<<< HEAD
             "Microsoft.AspNetCore.Authentication.JwtBearer": {
               "target": "Package",
               "version": "[6.0.9, )"
@@ -80,8 +62,6 @@
               "target": "Package",
               "version": "[6.0.9, )"
             },
-=======
->>>>>>> 74cd813b126984172ba527d90217ca90f4c7d560
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.2.3, )"
@@ -93,12 +73,7 @@
             "net47",
             "net471",
             "net472",
-<<<<<<< HEAD
             "net48"
-=======
-            "net48",
-            "net481"
->>>>>>> 74cd813b126984172ba527d90217ca90f4c7d560
           ],
           "assetTargetFallback": true,
           "warn": true,
@@ -110,11 +85,7 @@
               "privateAssets": "all"
             }
           },
-<<<<<<< HEAD
           "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
-=======
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.401\\RuntimeIdentifierGraph.json"
->>>>>>> 74cd813b126984172ba527d90217ca90f4c7d560
         }
       }
     }

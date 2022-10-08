@@ -58,7 +58,7 @@ namespace GEPDA_API.Models.Services
 
                         }
                         ),
-                    Expires = DateTime.UtcNow.AddDays(60),
+                    Expires = DateTime.UtcNow.AddHours(1),
                     SigningCredentials =
                         new SigningCredentials(new SymmetricSecurityKey(llave), SecurityAlgorithms.HmacSha256Signature)
                 };
