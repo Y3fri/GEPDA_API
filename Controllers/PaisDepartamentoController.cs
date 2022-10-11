@@ -39,7 +39,7 @@ namespace GEPDA_API.Controllers
         }
 
         [HttpPost]
-
+        [Authorize]
         public IActionResult Add(PaisDepartamentoRequest oModel)
         {
             Respuesta oRespuesta = new Respuesta();
@@ -67,6 +67,7 @@ namespace GEPDA_API.Controllers
         }
 
         [HttpPut]
+
         public IActionResult Edit(PaisDepartamentoRequest oModel)
         {
             Respuesta oRespuesta = new Respuesta();

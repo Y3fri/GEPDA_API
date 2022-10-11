@@ -18,6 +18,7 @@ namespace GEPDA_API.Controllers
             _criterioService = criterioService;
         }
         [HttpGet]
+        [Authorize]
         public IActionResult Get()
         {
             Respuesta oRespuesta = new Respuesta();
@@ -38,6 +39,7 @@ namespace GEPDA_API.Controllers
         }
 
         [HttpGet("{Id}/Programa")]
+        [Authorize]
         public IActionResult Get(int Id)
         {
             Respuesta oRespuesta = new Respuesta();
@@ -60,7 +62,7 @@ namespace GEPDA_API.Controllers
 
        
         [HttpPost]
-
+        [Authorize]
         public IActionResult Add(ProgramaCriterioRequest oModel)
         {
             Respuesta oRespuesta = new Respuesta();
@@ -87,6 +89,7 @@ namespace GEPDA_API.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public IActionResult Edit(ProgramaCriterioRequest oModel)
         {
             Respuesta oRespuesta = new Respuesta();
@@ -115,7 +118,7 @@ namespace GEPDA_API.Controllers
 
 
         [HttpDelete("{Id}")]
-
+        [Authorize]
         public IActionResult Delete(int Id)
         {
             Respuesta oRespuesta = new Respuesta();

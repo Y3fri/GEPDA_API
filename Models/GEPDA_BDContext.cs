@@ -246,8 +246,6 @@ namespace GEPDA_API.Models
                     .HasColumnType("date")
                     .HasColumnName("asp_fecha");
 
-                entity.Property(e => e.AspHora).HasColumnName("asp_hora");
-
                 entity.Property(e => e.AspMunicipio).HasColumnName("asp_municipio");
 
                 entity.Property(e => e.AspNombres)

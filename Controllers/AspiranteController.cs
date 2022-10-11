@@ -2,6 +2,7 @@
 using GEPDA_API.Models.Request;
 using GEPDA_API.Models.Response;
 using GEPDA_API.Models.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,6 +19,7 @@ namespace GEPDA_API.Controllers
             _aspiranteService = aspiranteService;
         }
         [HttpGet]
+        [Authorize]
         public IActionResult Get()
         {
             Respuesta oRespuesta = new Respuesta();
@@ -38,6 +40,7 @@ namespace GEPDA_API.Controllers
         }
 
         [HttpGet("{Id}/Sede")]
+        [Authorize]
         public IActionResult Get(int Id)
         {
             Respuesta oRespuesta = new Respuesta();
@@ -58,6 +61,7 @@ namespace GEPDA_API.Controllers
         }
 
         [HttpGet("{Id}/Programa")]
+        [Authorize]
         public IActionResult Gets(int Id)
         {
             Respuesta oRespuesta = new Respuesta();
@@ -120,6 +124,7 @@ namespace GEPDA_API.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public IActionResult Edit(SedeProgramaAspiranteRequest oModel)
         {
             Respuesta oRespuesta = new Respuesta();
@@ -144,8 +149,7 @@ namespace GEPDA_API.Controllers
                     oPC.AspNota4 = oModel.AspNota4;
                     oPC.AspNota5 = oModel.AspNota5;
                     oPC.AspPromedio = (oModel.AspNota1+ oModel.AspNota2+ oModel.AspNota3+ oModel.AspNota4+ oModel.AspNota5)/5;
-                    oPC.AspFecha = oModel.AspFecha;
-                    oPC.AspHora = oModel.AspHora;
+                    oPC.AspFecha = oModel.AspFecha;                   
                     db.Entry(oPC).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
                     oRespuesta.Exito = 1;
@@ -163,7 +167,7 @@ namespace GEPDA_API.Controllers
 
 
         [HttpDelete("{Id}")]
-
+        [Authorize]
         public IActionResult Delete(int Id)
         {
             Respuesta oRespuesta = new Respuesta();
