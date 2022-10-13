@@ -2,6 +2,7 @@
 using GEPDA_API.Models.Request;
 using GEPDA_API.Models.Response;
 using GEPDA_API.Models.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 

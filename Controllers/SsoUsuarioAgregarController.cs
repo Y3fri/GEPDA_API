@@ -2,6 +2,7 @@
 using GEPDA_API.Models.Request;
 using GEPDA_API.Models.Response;
 using GEPDA_API.Models.Services;
+using GEPDA_API.Models.Tools;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -10,15 +11,14 @@ namespace GEPDA_API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ProgramaController : ControllerBase
+    public class SsoUsuarioAgregarController : ControllerBase
     {
-        private readonly IProgramaService _programaService;
+        private readonly ISsoUsuarioAgregarService _ssoUsuarioAgregarService;
 
-        public ProgramaController(IProgramaService programaService)
+        public SsoUsuarioAgregarController(ISsoUsuarioAgregarService ssoUsuarioAgregarService)
         {
-            _programaService = programaService;
+            _ssoUsuarioAgregarService = ssoUsuarioAgregarService;
         }
-
         [HttpGet]
         public IActionResult Get()
         {
@@ -26,11 +26,8 @@ namespace GEPDA_API.Controllers
 
             try
             {
-
-                oRespuesta.Data = _programaService.get();
+                oRespuesta.Data = _ssoUsuarioAgregarService.get();
                 oRespuesta.Exito = 1;
-
-
             }
             catch (Exception ex)
             {
@@ -39,18 +36,15 @@ namespace GEPDA_API.Controllers
             return Ok(oRespuesta);
         }
 
-        [HttpGet("{Id}/Programa")]
+        [HttpGet("{Id}")]
         public IActionResult Get(int Id)
         {
             Respuesta oRespuesta = new Respuesta();
 
             try
             {
-
-                oRespuesta.Data = _programaService.get(Id);
+                oRespuesta.Data = _ssoUsuarioAgregarService.get(Id);
                 oRespuesta.Exito = 1;
-
-
             }
             catch (Exception ex)
             {
@@ -60,39 +54,28 @@ namespace GEPDA_API.Controllers
         }
 
 
-        [HttpGet("{Id}/Sede")]
-        public IActionResult Gets(int Id)
-        {
-            Respuesta oRespuesta = new Respuesta();
-
-            try
-            {
-
-                oRespuesta.Data = _programaService.gets(Id);
-                oRespuesta.Exito = 1;
-
-
-            }
-            catch (Exception ex)
-            {
-                oRespuesta.Mensaje = ex.Message;
-            }
-            return Ok(oRespuesta);
-        }
 
         [HttpPost]
         [Authorize]
-        public IActionResult Add(SedeProgramaRequest oModel)
+
+        public IActionResult Add(SsoUsuarioAgregarRequest oModel)
         {
             Respuesta oRespuesta = new Respuesta();
             try
             {
                 using (GEPDA_BDContext db = new GEPDA_BDContext())
                 {
-                    SedePrograma oSP = new SedePrograma();
-                    oSP.ProSede = oModel.ProSede;
-                    oSP.ProNombre = oModel.ProNombre;               
-                    db.SedeProgramas.Add(oSP);
+                    SsoUsuario oUsu = new SsoUsuario();
+                    oUsu.UsuRol = oModel.UsuRol;
+                    oUsu.UsuUniversidad = oModel.UsuUniversidad;
+                    oUsu.UsuSede = oModel.UsuSede;
+                    oUsu.UsuDocumento = oModel.UsuDocumento;
+                    oUsu.UsuNombre = oModel.UsuNombre;
+                    oUsu.UsuEmail = oModel.UsuEmail;
+                    oUsu.UsuApellido = oModel.UsuApellido;
+                    oUsu.UsuNickname = oModel.UsuNickname;
+                    oUsu.UsuClave = Encrypt.GetSHA256(oModel.UsuClave);
+                    db.SsoUsuarios.Add(oUsu);
                     db.SaveChanges();
                     oRespuesta.Exito = 1;
                 }
@@ -108,17 +91,26 @@ namespace GEPDA_API.Controllers
 
         [HttpPut]
         [Authorize]
-        public IActionResult Edit(SedeProgramaRequest oModel)
+
+        public IActionResult Edit(SsoUsuarioAgregarRequest oModel)
         {
             Respuesta oRespuesta = new Respuesta();
             try
             {
                 using (GEPDA_BDContext db = new GEPDA_BDContext())
                 {
-                    SedePrograma oSP = db.SedeProgramas.Find(oModel.ProId);
-                    oSP.ProSede = oModel.ProSede;
-                    oSP.ProNombre = oModel.ProNombre;
-                    db.Entry(oSP).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    SsoUsuario oUsu = db.SsoUsuarios.Find(oModel.UsuId);
+                    oUsu.UsuRol = oModel.UsuRol;
+                    oUsu.UsuUniversidad = oModel.UsuUniversidad;
+                    oUsu.UsuSede = oModel.UsuSede;
+                    oUsu.UsuEmail = oModel.UsuEmail;
+                    oUsu.UsuDocumento = oModel.UsuDocumento;
+                    oUsu.UsuNombre = oModel.UsuNombre;
+                    oUsu.UsuApellido = oModel.UsuApellido;
+                    oUsu.UsuNickname = oModel.UsuNickname;
+                    oUsu.UsuClave = oModel.UsuClave;
+
+                    db.Entry(oUsu).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
                     oRespuesta.Exito = 1;
                 }
@@ -136,6 +128,7 @@ namespace GEPDA_API.Controllers
 
         [HttpDelete("{Id}")]
         [Authorize]
+
         public IActionResult Delete(int Id)
         {
             Respuesta oRespuesta = new Respuesta();
@@ -144,8 +137,8 @@ namespace GEPDA_API.Controllers
             {
                 using (GEPDA_BDContext db = new GEPDA_BDContext())
                 {
-                    SedePrograma oMM = db.SedeProgramas.Find(Id);
-                    db.Remove(oMM);
+                    SsoUsuario oUsu = db.SsoUsuarios.Find(Id);
+                    db.Remove(oUsu);
                     db.SaveChanges();
                     oRespuesta.Exito = 1;
                 }
