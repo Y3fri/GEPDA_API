@@ -10,38 +10,39 @@ using System.Text;
 
 namespace GEPDA_API.Models.Services
 {
-        public class SsoUsuarioService : ISsoUsuarioService
-        {
+    public class SsoUsuProfeService :ISsoUsuProfeService
+    {
+       
 
             private readonly AppSettings _appSettings;
 
-            public SsoUsuarioService(IOptions<AppSettings> appSettings)
+            public SsoUsuProfeService(IOptions<AppSettings> appSettings)
             {
                 _appSettings = appSettings.Value;
             }
 
-            public UserResponse Auth(SsoUsuarioRequest model)
+            public UserProfeResponse Auth(SsoUsuProfeRequest model)
             {
-                UserResponse userresponse = new UserResponse();
+                UserProfeResponse userresponse = new UserProfeResponse();
                 using (var db = new GEPDA_BDContext())
                 {
                     string spassword = Encrypt.GetSHA256(model.UsuClave);
-                    var usuario = db.SsoUsuarios.Where(d => d.UsuNickname == model.UsuNickname &&
-                                                   d.UsuClave == spassword).FirstOrDefault();
-                    if (usuario == null) return null;
+                    var usuarios = db.SsoUsuProves.Where(d => d.UsuPNickname == model.UsuNickname &&
+                                                   d.UsuPClave == spassword).FirstOrDefault();
+                    if (usuarios == null) return null;
 
-                    userresponse.UsuNickname = usuario.UsuNickname;
-                    userresponse.Token = GetToken(usuario);
-                    userresponse.UsuRol = usuario.UsuRol;
-                    userresponse.UsuUniversidad = usuario.UsuUniversidad;
-                    userresponse.UsuSede = usuario.UsuSede;
+                    userresponse.UsuPNickname = usuarios.UsuPNickname;
+                    userresponse.Token = GetTokens(usuarios);
+                    
+                    userresponse.UsuPPrograma = usuarios.UsuPPrograma;
+                    userresponse.UsuPSede = usuarios.UsuPSede;
 
                 }
                 return userresponse;
 
             }
 
-            private string GetToken(SsoUsuario usuario)
+            private string GetTokens(SsoUsuProfe usuarios)
             {
                 var tokenHandler = new JwtSecurityTokenHandler();
                 var llave = Encoding.ASCII.GetBytes(_appSettings.Secreto);
@@ -50,11 +51,10 @@ namespace GEPDA_API.Models.Services
                     Subject = new ClaimsIdentity(
                         new Claim[]
                         {
-                        new Claim(ClaimTypes.NameIdentifier,usuario.UsuId.ToString()),
-                         new Claim(ClaimTypes.Email,usuario.UsuNickname),
-                         new Claim(ClaimTypes.Role,usuario.UsuRol.ToString()),
-                         new Claim(ClaimTypes.Role,usuario.UsuUniversidad.ToString()),
-                          new Claim(ClaimTypes.Role,usuario.UsuSede.ToString())
+                        new Claim(ClaimTypes.NameIdentifier,usuarios.UsuPId.ToString()),
+                         new Claim(ClaimTypes.Email,usuarios.UsuPNickname),                         
+                         new Claim(ClaimTypes.Role,usuarios.UsuPPrograma.ToString()),
+                          new Claim(ClaimTypes.Role,usuarios.UsuPSede.ToString())
 
                         }
                         ),
@@ -67,4 +67,5 @@ namespace GEPDA_API.Models.Services
                 return tokenHandler.WriteToken(token);
             }
         }
-}
+    }
+

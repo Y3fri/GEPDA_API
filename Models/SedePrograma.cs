@@ -9,6 +9,7 @@ namespace GEPDA_API.Models
         {
             ProgramaCriterios = new HashSet<ProgramaCriterio>();
             SedeProgramaAspirantes = new HashSet<SedeProgramaAspirante>();
+            SsoUsuProves = new HashSet<SsoUsuProfe>();
         }
 
         public int ProId { get; set; }
@@ -18,5 +19,6 @@ namespace GEPDA_API.Models
         public virtual UniversidadSede ProSedeNavigation { get; set; } = null!;
         public virtual ICollection<ProgramaCriterio> ProgramaCriterios { get; set; }
         public virtual ICollection<SedeProgramaAspirante> SedeProgramaAspirantes { get; set; }
+        public virtual ICollection<SsoUsuProfe> SsoUsuProves { get; set; }
     }
 }
