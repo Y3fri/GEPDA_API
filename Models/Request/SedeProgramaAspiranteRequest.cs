@@ -20,6 +20,6 @@
         public double? AspNota5 { get; set; }
         public double? AspPromedio { get; set; }
         public DateTime? AspFecha { get; set; }
-        public TimeSpan? AspHora { get; set; }
+        
     }
 }
