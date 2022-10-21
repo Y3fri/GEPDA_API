@@ -22,7 +22,7 @@ namespace GEPDA_API.Models.Services
 
             return _context.SsoUsuarios.Include(c => c.UsuRolNavigation)
                 .Include(c => c.UsuUniversidadNavigation)
-                .Include(c => c.UsuSedeNavigation).Where(c => c.UsuSede == id).OrderByDescending(a => a.UsuId);
+                .Include(c => c.UsuSedeNavigation).Where(c => c.UsuUniversidad == id).OrderByDescending(a => a.UsuId);
         }
 
     }
