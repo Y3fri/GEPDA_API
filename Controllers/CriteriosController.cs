@@ -40,7 +40,6 @@ namespace GEPDA_API.Controllers
         }
 
         [HttpGet("{Id}/Programa")]
-        [Authorize]
         public IActionResult Get(int Id)
         {
             Respuesta oRespuesta = new Respuesta();
@@ -60,8 +59,7 @@ namespace GEPDA_API.Controllers
             return Ok(oRespuesta);
         }
 
-        [HttpGet("{Id}/Sede")]
-        [Authorize]
+        [HttpGet("{Id}/Sede")]       
         public IActionResult Gets(int Id)
         {
             Respuesta oRespuesta = new Respuesta();
