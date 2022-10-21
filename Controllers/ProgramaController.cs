@@ -91,7 +91,8 @@ namespace GEPDA_API.Controllers
                 {
                     SedePrograma oSP = new SedePrograma();
                     oSP.ProSede = oModel.ProSede;
-                    oSP.ProNombre = oModel.ProNombre;               
+                    oSP.ProNombre = oModel.ProNombre;
+                    oSP.ProDescripcion = oModel.ProDescripcion;
                     db.SedeProgramas.Add(oSP);
                     db.SaveChanges();
                     oRespuesta.Exito = 1;
@@ -118,6 +119,7 @@ namespace GEPDA_API.Controllers
                     SedePrograma oSP = db.SedeProgramas.Find(oModel.ProId);
                     oSP.ProSede = oModel.ProSede;
                     oSP.ProNombre = oModel.ProNombre;
+                    oSP.ProDescripcion = oModel.ProDescripcion;
                     db.Entry(oSP).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
                     oRespuesta.Exito = 1;

@@ -5,5 +5,6 @@
         public int ProId { get; set; }
         public int ProSede { get; set; }
         public string ProNombre { get; set; } = null!;
+        public string ProDescripcion { get; set; } = null!;
     }
 }

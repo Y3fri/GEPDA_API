@@ -34,7 +34,7 @@ namespace GEPDA_API.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-32FLDL7;Database=GEPDA_BD;Trusted_Connection=true");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-32FLDL7;Database=GEPDA_BD;Trusted_Connection=True;");
             }
         }
 
@@ -184,11 +184,19 @@ namespace GEPDA_API.Models
 
                 entity.Property(e => e.CriPrograma).HasColumnName("cri_programa");
 
+                entity.Property(e => e.CriSede).HasColumnName("cri_sede");
+
                 entity.HasOne(d => d.CriProgramaNavigation)
                     .WithMany(p => p.ProgramaCriterios)
                     .HasForeignKey(d => d.CriPrograma)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Programa_criterios_Sede_programa");
+
+                entity.HasOne(d => d.CriSedeNavigation)
+                    .WithMany(p => p.ProgramaCriterios)
+                    .HasForeignKey(d => d.CriSede)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Programa_criterios_Universidad_sede");
             });
 
             modelBuilder.Entity<SedePrograma>(entity =>
@@ -198,6 +206,11 @@ namespace GEPDA_API.Models
                 entity.ToTable("Sede_programa");
 
                 entity.Property(e => e.ProId).HasColumnName("pro_id");
+
+                entity.Property(e => e.ProDescripcion)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("pro_descripcion");
 
                 entity.Property(e => e.ProNombre)
                     .HasMaxLength(80)

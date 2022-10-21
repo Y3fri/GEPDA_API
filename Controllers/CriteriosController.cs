@@ -60,8 +60,28 @@ namespace GEPDA_API.Controllers
             return Ok(oRespuesta);
         }
 
+        [HttpGet("{Id}/Sede")]
+        [Authorize]
+        public IActionResult Gets(int Id)
+        {
+            Respuesta oRespuesta = new Respuesta();
 
-       
+            try
+            {
+
+                oRespuesta.Data = _criterioService.gets(Id);
+                oRespuesta.Exito = 1;
+
+
+            }
+            catch (Exception ex)
+            {
+                oRespuesta.Mensaje = ex.Message;
+            }
+            return Ok(oRespuesta);
+        }
+
+
         [HttpPost]
         [Authorize]
         public IActionResult Add(ProgramaCriterioRequest oModel)
@@ -72,6 +92,7 @@ namespace GEPDA_API.Controllers
                 using (GEPDA_BDContext db = new GEPDA_BDContext())
                 {
                     ProgramaCriterio oPC = new ProgramaCriterio();
+                    oPC.CriSede = oModel.CriSede;
                     oPC.CriPrograma = oModel.CriPrograma;
                     oPC.CriNombre = oModel.CriNombre;
                     oPC.CriDescripcion = oModel.CriDescripcion;                                       
@@ -99,6 +120,7 @@ namespace GEPDA_API.Controllers
                 using (GEPDA_BDContext db = new GEPDA_BDContext())
                 {
                     ProgramaCriterio oPC = db.ProgramaCriterios.Find(oModel.CriId);
+                    oPC.CriSede = oModel.CriSede;
                     oPC.CriPrograma = oModel.CriPrograma;
                     oPC.CriNombre = oModel.CriNombre;
                     oPC.CriDescripcion = oModel.CriDescripcion;
