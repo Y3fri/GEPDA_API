@@ -2,6 +2,7 @@
 using GEPDA_API.Models.Request;
 using GEPDA_API.Models.Response;
 using GEPDA_API.Models.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,7 +40,7 @@ namespace GEPDA_API.Controllers
         }
 
         [HttpPost]
-
+        [Authorize]
         public IActionResult Add(PaisDepartamentoRequest oModel)
         {
             Respuesta oRespuesta = new Respuesta();
@@ -67,6 +68,7 @@ namespace GEPDA_API.Controllers
         }
 
         [HttpPut]
+        [Authorize]
         public IActionResult Edit(PaisDepartamentoRequest oModel)
         {
             Respuesta oRespuesta = new Respuesta();
@@ -96,7 +98,7 @@ namespace GEPDA_API.Controllers
 
 
         [HttpDelete("{Id}")]
-
+        [Authorize]
         public IActionResult Delete(int Id)
         {
             Respuesta oRespuesta = new Respuesta();

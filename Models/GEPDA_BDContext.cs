@@ -25,6 +25,7 @@ namespace GEPDA_API.Models
         public virtual DbSet<SedePrograma> SedeProgramas { get; set; } = null!;
         public virtual DbSet<SedeProgramaAspirante> SedeProgramaAspirantes { get; set; } = null!;
         public virtual DbSet<SsoRol> SsoRols { get; set; } = null!;
+        public virtual DbSet<SsoUsuProfe> SsoUsuProves { get; set; } = null!;
         public virtual DbSet<SsoUsuario> SsoUsuarios { get; set; } = null!;
         public virtual DbSet<UniversidadSede> UniversidadSedes { get; set; } = null!;
 
@@ -183,11 +184,19 @@ namespace GEPDA_API.Models
 
                 entity.Property(e => e.CriPrograma).HasColumnName("cri_programa");
 
+                entity.Property(e => e.CriSede).HasColumnName("cri_sede");
+
                 entity.HasOne(d => d.CriProgramaNavigation)
                     .WithMany(p => p.ProgramaCriterios)
                     .HasForeignKey(d => d.CriPrograma)
                     .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_Programa_criterios_Sede_programa");
+
+                entity.HasOne(d => d.CriSedeNavigation)
+                    .WithMany(p => p.ProgramaCriterios)
+                    .HasForeignKey(d => d.CriSede)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_Programa_criterios_Universidad_sede");
             });
 
             modelBuilder.Entity<SedePrograma>(entity =>
@@ -197,6 +206,11 @@ namespace GEPDA_API.Models
                 entity.ToTable("Sede_programa");
 
                 entity.Property(e => e.ProId).HasColumnName("pro_id");
+
+                entity.Property(e => e.ProDescripcion)
+                    .HasMaxLength(500)
+                    .IsUnicode(false)
+                    .HasColumnName("pro_descripcion");
 
                 entity.Property(e => e.ProNombre)
                     .HasMaxLength(80)
@@ -246,8 +260,6 @@ namespace GEPDA_API.Models
                     .HasColumnType("date")
                     .HasColumnName("asp_fecha");
 
-                entity.Property(e => e.AspHora).HasColumnName("asp_hora");
-
                 entity.Property(e => e.AspMunicipio).HasColumnName("asp_municipio");
 
                 entity.Property(e => e.AspNombres)
@@ -267,7 +279,14 @@ namespace GEPDA_API.Models
 
                 entity.Property(e => e.AspPrograma).HasColumnName("asp_programa");
 
+                entity.Property(e => e.AspPromedio).HasColumnName("asp_promedio");
+
                 entity.Property(e => e.AspSede).HasColumnName("asp_sede");
+
+                entity.Property(e => e.AspTelefono)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("asp_telefono");
 
                 entity.HasOne(d => d.AspDniNavigation)
                     .WithMany(p => p.SedeProgramaAspirantes)
@@ -311,6 +330,65 @@ namespace GEPDA_API.Models
                     .HasMaxLength(80)
                     .IsUnicode(false)
                     .HasColumnName("rol_nombre");
+            });
+
+            modelBuilder.Entity<SsoUsuProfe>(entity =>
+            {
+                entity.HasKey(e => e.UsuPId);
+
+                entity.ToTable("SsoUsuProfe");
+
+                entity.Property(e => e.UsuPId).HasColumnName("usuP_id");
+
+                entity.Property(e => e.UsuPApellido)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("usuP_Apellido");
+
+                entity.Property(e => e.UsuPClave)
+                    .IsUnicode(false)
+                    .HasColumnName("usuP_clave");
+
+                entity.Property(e => e.UsuPDocumento)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("usuP_documento");
+
+                entity.Property(e => e.UsuPEmail)
+                    .HasMaxLength(80)
+                    .IsUnicode(false)
+                    .HasColumnName("usuP_Email");
+
+                entity.Property(e => e.UsuPNickname)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("usuP_nickname");
+
+                entity.Property(e => e.UsuPNombre)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("usuP_nombre");
+
+                entity.Property(e => e.UsuPPrograma).HasColumnName("usuP_programa");
+
+                entity.Property(e => e.UsuPSede).HasColumnName("usuP_sede");
+
+                entity.Property(e => e.UsuPTelefono)
+                    .HasMaxLength(30)
+                    .IsUnicode(false)
+                    .HasColumnName("usuP_telefono");
+
+                entity.HasOne(d => d.UsuPProgramaNavigation)
+                    .WithMany(p => p.SsoUsuProves)
+                    .HasForeignKey(d => d.UsuPPrograma)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_SsoUsuProfe_Sede_programa");
+
+                entity.HasOne(d => d.UsuPSedeNavigation)
+                    .WithMany(p => p.SsoUsuProves)
+                    .HasForeignKey(d => d.UsuPSede)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_SsoUsuProfe_Universidad_sede");
             });
 
             modelBuilder.Entity<SsoUsuario>(entity =>

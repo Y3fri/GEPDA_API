@@ -13,6 +13,7 @@ namespace GEPDA_API.Models
         public string AspDocumento { get; set; } = null!;
         public string AspNombres { get; set; } = null!;
         public string AspApellidos { get; set; } = null!;
+        public string AspTelefono { get; set; } = null!;
         public string AspBarrio { get; set; } = null!;
         public string AspDireccion { get; set; } = null!;
         public double? AspNota1 { get; set; }
@@ -20,8 +21,8 @@ namespace GEPDA_API.Models
         public double? AspNota3 { get; set; }
         public double? AspNota4 { get; set; }
         public double? AspNota5 { get; set; }
+        public double? AspPromedio { get; set; }
         public DateTime? AspFecha { get; set; }
-        public TimeSpan? AspHora { get; set; }
 
         public virtual DniTipo AspDniNavigation { get; set; } = null!;
         public virtual DepartamentoMunicipio AspMunicipioNavigation { get; set; } = null!;

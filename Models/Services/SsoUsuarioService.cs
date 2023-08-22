@@ -54,11 +54,11 @@ namespace GEPDA_API.Models.Services
                          new Claim(ClaimTypes.Email,usuario.UsuNickname),
                          new Claim(ClaimTypes.Role,usuario.UsuRol.ToString()),
                          new Claim(ClaimTypes.Role,usuario.UsuUniversidad.ToString()),
-                          new Claim(ClaimTypes.Country,usuario.UsuSede.ToString())
+                          new Claim(ClaimTypes.Role,usuario.UsuSede.ToString())
 
                         }
                         ),
-                    Expires = DateTime.UtcNow.AddDays(60),
+                    Expires = DateTime.UtcNow.AddHours(1),
                     SigningCredentials =
                         new SigningCredentials(new SymmetricSecurityKey(llave), SecurityAlgorithms.HmacSha256Signature)
                 };
