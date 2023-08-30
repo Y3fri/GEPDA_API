@@ -56,18 +56,16 @@ builder.Services.AddCors(options =>
 
 
 builder.Services.AddScoped<ISsoUsuarioService, SsoUsuarioService>();
-builder.Services.AddScoped<ISsoUsuProfeService, SsoUsuProfeService>();
 builder.Services.AddScoped<ISsoUsuarioAgregarService, SsoUsuarioAgregarService>();
-builder.Services.AddScoped<ISsoUsuProfeAgregarService, SsoUsuProfeAgregarService>();
 builder.Services.AddScoped<IDepartamentoService, DepartamentoService>();
 builder.Services.AddScoped<IMunicipioService, MunicipioService>();
 builder.Services.AddScoped<IUniversidadService, UniversidadService>();
 builder.Services.AddScoped<ISedeService, SedeService>();
 builder.Services.AddScoped<IProgramaService, ProgramaService>();
-builder.Services.AddScoped<ICriterioService, CriterioService>();
 builder.Services.AddScoped<IProgramaService, ProgramaService>();
 builder.Services.AddScoped<IAspiranteService, AspiranteService>();
-
+builder.Services.AddScoped<IAspiranteEntrevista, AspiranteEntrevista>();
+builder.Services.AddScoped<IEntrevistaService, EntrevistaService>();
 
 
 

@@ -5,6 +5,7 @@ using GEPDA_API.Models.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace GEPDA_API.Controllers
 {
@@ -102,16 +103,43 @@ namespace GEPDA_API.Controllers
                     oPC.AspBarrio = oModel.AspBarrio;
                     oPC.AspDireccion= oModel.AspDireccion;
                     oPC.AspTelefono= oModel.AspTelefono;
-                    oPC.AspNota1 = oModel.AspNota1;
-                    oPC.AspNota2 = oModel.AspNota2;
-                    oPC.AspNota3 = oModel.AspNota3;
-                    oPC.AspNota4 = oModel.AspNota4;
-                    oPC.AspNota5 = oModel.AspNota5;
-                    oPC.AspPromedio = oModel.AspPromedio;
-                    
+                    oPC.AspPromedioPruebaIa = oModel.AspPromedioPruebaIa;
+                    oPC.AspPromedioEntrevista = oModel.AspPromedioEntrevista;
+                    oPC.AspPromedioPruebaMate = oModel.AspPromedioPruebaMate;
+                    oPC.AspEstado = oModel.AspEstado;
                     db.SedeProgramaAspirantes.Add(oPC);
                     db.SaveChanges();
                     oRespuesta.Exito = 1;
+
+                    var entrevistasConPrograma = db.Entrevista
+                        .Include(e => e.EntProgramaNavigation) // Incluye la relación a SedePrograma
+                        .ToList();
+
+                    foreach (var entrevista in entrevistasConPrograma)
+                    {
+                        var aspirantesMismoPrograma = db.SedeProgramaAspirantes
+                            .Where(a => a.AspPrograma == entrevista.EntPrograma)
+                            .ToList();
+
+                        foreach (var aspirante in aspirantesMismoPrograma)
+                        {
+                            var relacionExistente = db.AspiranteEntrevista
+                                .Any(r => r.IdAspirante == aspirante.AspId && r.IdEntrevista == entrevista.EntId);
+
+                            if (!relacionExistente)
+                            {
+                                var nuevaRelacion = new AspiranteEntrevistum
+                                {
+                                    IdAspirante = aspirante.AspId,
+                                    IdEntrevista = entrevista.EntId,
+                                    Nota = null
+                                };
+
+                                db.AspiranteEntrevista.Add(nuevaRelacion);
+                            }
+                        }
+                    }
+                    db.SaveChanges();
                 }
 
             }
@@ -143,13 +171,10 @@ namespace GEPDA_API.Controllers
                     oPC.AspBarrio = oModel.AspBarrio;
                     oPC.AspDireccion = oModel.AspDireccion;
                     oPC.AspTelefono = oModel.AspTelefono;
-                    oPC.AspNota1 = oModel.AspNota1;
-                    oPC.AspNota2 = oModel.AspNota2;
-                    oPC.AspNota3 = oModel.AspNota3;
-                    oPC.AspNota4 = oModel.AspNota4;
-                    oPC.AspNota5 = oModel.AspNota5;
-                    oPC.AspPromedio = (oModel.AspNota1+ oModel.AspNota2+ oModel.AspNota3+ oModel.AspNota4+ oModel.AspNota5)/5;
-                    oPC.AspFecha = oModel.AspFecha;                   
+                    oPC.AspPromedioPruebaIa = oModel.AspPromedioPruebaIa;
+                    oPC.AspPromedioEntrevista = oModel.AspPromedioEntrevista;
+                    oPC.AspPromedioPruebaMate = oModel.AspPromedioPruebaMate;
+                    oPC.AspEstado = oModel.AspEstado;
                     db.Entry(oPC).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
                     oRespuesta.Exito = 1;
@@ -163,32 +188,6 @@ namespace GEPDA_API.Controllers
             }
             return Ok(oRespuesta);
         }
-
-
-
-        [HttpDelete("{Id}")]
-        [Authorize]
-        public IActionResult Delete(int Id)
-        {
-            Respuesta oRespuesta = new Respuesta();
-
-            try
-            {
-                using (GEPDA_BDContext db = new GEPDA_BDContext())
-                {
-                    SedeProgramaAspirante oMM = db.SedeProgramaAspirantes.Find(Id);
-                    db.Remove(oMM);
-                    db.SaveChanges();
-                    oRespuesta.Exito = 1;
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                oRespuesta.Mensaje = ex.Message;
-            }
-            return Ok(oRespuesta);
-        }
+       
     }
 }

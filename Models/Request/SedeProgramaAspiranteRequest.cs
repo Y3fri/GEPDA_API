@@ -13,13 +13,10 @@
         public string AspTelefono { get; set; } = null!;
         public string AspBarrio { get; set; } = null!;
         public string AspDireccion { get; set; } = null!;
-        public double? AspNota1 { get; set; }
-        public double? AspNota2 { get; set; }
-        public double? AspNota3 { get; set; }
-        public double? AspNota4 { get; set; }
-        public double? AspNota5 { get; set; }
-        public double? AspPromedio { get; set; }
-        public DateTime? AspFecha { get; set; }
-        
+        public double? AspPromedioPruebaIa { get; set; }
+        public double? AspPromedioEntrevista { get; set; }
+        public double? AspPromedioPruebaMate { get; set; }
+        public int? AspEstado { get; set; }
+
     }
 }

@@ -39,15 +39,15 @@ namespace GEPDA_API.Controllers
             return Ok(oRespuesta);
         }
 
-        [HttpGet("{Id}/Universidad")]
-        public IActionResult Get(int Id)
+        [HttpGet("{Id}/Universidad/{Est}")]
+        public IActionResult Get(int Id,int Est)
         {
             Respuesta oRespuesta = new Respuesta();
 
             try
             {
 
-                oRespuesta.Data = _universidadService.get(Id);
+                oRespuesta.Data = _universidadService.get(Id,Est);
                 oRespuesta.Exito = 1;
 
 
@@ -60,6 +60,15 @@ namespace GEPDA_API.Controllers
         }
 
 
+        [HttpGet("{universidad}/Logo/{fileName}/file")]
+        public IActionResult GetImage(string universidad, string fileName)
+        {
+            var filePath = Path.Combine("Images", universidad, "Logo", fileName);
+            var image = System.IO.File.OpenRead(filePath);
+            return File(image, "image/jpeg");
+        }
+
+
         [HttpPost]
         [Authorize]
         public IActionResult Add( UniversidadRequest oModel)
@@ -67,19 +76,10 @@ namespace GEPDA_API.Controllers
             Respuesta oRespuesta = new Respuesta();
             try
             {
-                using (GEPDA_BDContext db = new GEPDA_BDContext())
-                {
-                    InformacionUniversidad oIU = new InformacionUniversidad();
-                    oIU.UniMunicipio = oModel.UniMunicipio;
-                    oIU.UniNombre = oModel.UniNombre;
-                    oIU.UniEmailPrincipal = oModel.UniEmailPrincipal;
-                    oIU.UniDireccionPrincipal = oModel.UniDireccionPrincipal;
-                    oIU.UniTelefonoPrincipal = oModel.UniTelefonoPrincipal;
-                    oIU.UniLogo = oModel.UniLogo;
-                    db.InformacionUniversidads.Add(oIU);
-                    db.SaveChanges();
+
+                _universidadService.Add(oModel);
                     oRespuesta.Exito = 1;
-                }
+                
 
             }
             catch (Exception ex)
@@ -97,46 +97,8 @@ namespace GEPDA_API.Controllers
             Respuesta oRespuesta = new Respuesta();
             try
             {
-                using (GEPDA_BDContext db = new GEPDA_BDContext())
-                {
-                    InformacionUniversidad oIU = db.InformacionUniversidads.Find(oModel.UniId);
-                    oIU.UniMunicipio = oModel.UniMunicipio;
-                    oIU.UniNombre = oModel.UniNombre;
-                    oIU.UniEmailPrincipal = oModel.UniEmailPrincipal;
-                    oIU.UniDireccionPrincipal = oModel.UniDireccionPrincipal;
-                    oIU.UniTelefonoPrincipal = oModel.UniTelefonoPrincipal;
-                    oIU.UniLogo = oModel.UniLogo;
-                    db.Entry(oIU).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                    db.SaveChanges();
-                    oRespuesta.Exito = 1;
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                oRespuesta.Mensaje = ex.Message;
-            }
-            return Ok(oRespuesta);
-        }
-
-
-
-        [HttpDelete("{Id}")]
-        [Authorize]
-        public IActionResult Delete(int Id)
-        {
-            Respuesta oRespuesta = new Respuesta();
-
-            try
-            {
-                using (GEPDA_BDContext db = new GEPDA_BDContext())
-                {
-                    InformacionUniversidad oMM = db.InformacionUniversidads.Find(Id);
-                    db.Remove(oMM);
-                    db.SaveChanges();
-                    oRespuesta.Exito = 1;
-                }
+                _universidadService.Edit(oModel);
+                oRespuesta.Exito = 1;
 
             }
             catch (Exception ex)

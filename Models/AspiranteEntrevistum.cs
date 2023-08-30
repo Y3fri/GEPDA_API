@@ -9,6 +9,7 @@ namespace GEPDA_API.Models
         public int IdAspirante { get; set; }
         public int? IdEntrevista { get; set; }
         public double? Nota { get; set; }
+        public string? FechaEntre { get; set; }
 
         public virtual SedeProgramaAspirante IdAspiranteNavigation { get; set; } = null!;
         public virtual Entrevistum? IdEntrevistaNavigation { get; set; }

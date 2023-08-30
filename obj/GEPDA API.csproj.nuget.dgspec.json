@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\YEFERSON\\source\\repos\\GEPDA API\\GEPDA API.csproj": {}
+    "F:\\YEFERSON\\source\\repos\\GEPDA API\\GEPDA API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\YEFERSON\\source\\repos\\GEPDA API\\GEPDA API.csproj": {
+    "F:\\YEFERSON\\source\\repos\\GEPDA API\\GEPDA API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\YEFERSON\\source\\repos\\GEPDA API\\GEPDA API.csproj",
+        "projectUniqueName": "F:\\YEFERSON\\source\\repos\\GEPDA API\\GEPDA API.csproj",
         "projectName": "GEPDA API",
-        "projectPath": "C:\\Users\\YEFERSON\\source\\repos\\GEPDA API\\GEPDA API.csproj",
+        "projectPath": "F:\\YEFERSON\\source\\repos\\GEPDA API\\GEPDA API.csproj",
         "packagesPath": "C:\\Users\\YEFERSON\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\YEFERSON\\source\\repos\\GEPDA API\\obj\\",
+        "outputPath": "F:\\YEFERSON\\source\\repos\\GEPDA API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\YEFERSON\\AppData\\Roaming\\NuGet\\NuGet.Config",

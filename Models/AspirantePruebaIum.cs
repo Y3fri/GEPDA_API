@@ -7,7 +7,6 @@ namespace GEPDA_API.Models
     {
         public int? IdAspirante { get; set; }
         public int? IdPruebaIa { get; set; }
-        public string? RespuestaCorrecta { get; set; }
         public int? Puntos { get; set; }
 
         public virtual SedeProgramaAspirante? IdAspiranteNavigation { get; set; }

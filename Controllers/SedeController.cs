@@ -39,15 +39,15 @@ namespace GEPDA_API.Controllers
             return Ok(oRespuesta);
         }
 
-        [HttpGet("{Id}/Sede")]
-        public IActionResult Get(int Id)
+        [HttpGet("{Id}/Sede/{Est}")]
+        public IActionResult Get(int Id, int Est)
         {
             Respuesta oRespuesta = new Respuesta();
 
             try
             {
 
-                oRespuesta.Data = _sedeService.get(Id);
+                oRespuesta.Data = _sedeService.get(Id,Est);
                 oRespuesta.Exito = 1;
 
 
@@ -60,15 +60,15 @@ namespace GEPDA_API.Controllers
         }
 
 
-        [HttpGet("{Id}/Universidad")]
-        public IActionResult Gets(int Id)
+        [HttpGet("{Id}/Universidad/{Est}")]
+        public IActionResult Gets(int Id,int Est)
         {
             Respuesta oRespuesta = new Respuesta();
 
             try
             {
 
-                oRespuesta.Data = _sedeService.gets(Id);
+                oRespuesta.Data = _sedeService.gets(Id,Est);
                 oRespuesta.Exito = 1;
 
 
@@ -94,7 +94,8 @@ namespace GEPDA_API.Controllers
                     oUs.SedNombre = oModel.SedNombre;
                     oUs.SedEmail = oModel.SedEmail;
                     oUs.SedDireccion = oModel.SedDireccion;
-                    oUs.SedTelefono = oModel.SedTelefono;                    
+                    oUs.SedTelefono = oModel.SedTelefono;
+                    oUs.SedEstado = oModel.SedEstado;
                     db.UniversidadSedes.Add(oUs);
                     db.SaveChanges();
                     oRespuesta.Exito = 1;
@@ -124,6 +125,7 @@ namespace GEPDA_API.Controllers
                     oUs.SedEmail = oModel.SedEmail;
                     oUs.SedDireccion = oModel.SedDireccion;
                     oUs.SedTelefono = oModel.SedTelefono;
+                    oUs.SedEstado = oModel.SedEstado;
                     db.Entry(oUs).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
                     oRespuesta.Exito = 1;
@@ -140,30 +142,6 @@ namespace GEPDA_API.Controllers
 
 
 
-        [HttpDelete("{Id}")]
-        [Authorize]
-
-        public IActionResult Delete(int Id)
-        {
-            Respuesta oRespuesta = new Respuesta();
-
-            try
-            {
-                using (GEPDA_BDContext db = new GEPDA_BDContext())
-                {
-                    UniversidadSede oMM = db.UniversidadSedes.Find(Id);
-                    db.Remove(oMM);
-                    db.SaveChanges();
-                    oRespuesta.Exito = 1;
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                oRespuesta.Mensaje = ex.Message;
-            }
-            return Ok(oRespuesta);
-        }
+     
     }
 }

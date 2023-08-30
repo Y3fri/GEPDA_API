@@ -35,6 +35,8 @@ namespace GEPDA_API.Models.Services
                     userresponse.UsuRol = usuario.UsuRol;
                     userresponse.UsuUniversidad = usuario.UsuUniversidad;
                     userresponse.UsuSede = usuario.UsuSede;
+                    userresponse.UsuPrograma = usuario.UsuPrograma;
+                    userresponse.UsuEstado = usuario.UsuEstado;
 
                 }
                 return userresponse;
@@ -54,7 +56,9 @@ namespace GEPDA_API.Models.Services
                          new Claim(ClaimTypes.Email,usuario.UsuNickname),
                          new Claim(ClaimTypes.Role,usuario.UsuRol.ToString()),
                          new Claim(ClaimTypes.Role,usuario.UsuUniversidad.ToString()),
-                          new Claim(ClaimTypes.Role,usuario.UsuSede.ToString())
+                          new Claim(ClaimTypes.Role,usuario.UsuSede.ToString()),
+                            new Claim(ClaimTypes.Role,usuario.UsuPrograma.ToString()),
+                            new Claim(ClaimTypes.Role,usuario.UsuEstado.ToString())
 
                         }
                         ),

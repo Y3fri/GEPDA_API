@@ -14,13 +14,17 @@ namespace GEPDA_API.Models.Services
         {
             return _context.SedeProgramas.Include(c => c.ProSedeNavigation).OrderByDescending(a => a.ProId);
         }
-        public IQueryable<SedePrograma> get(int id)
+        public IQueryable<SedePrograma> get(int id,int est)
         {
-            return _context.SedeProgramas.Include(c => c.ProSedeNavigation).Where(c => c.ProId == id).OrderByDescending(a => a.ProId);
+            return _context.SedeProgramas.Include(c => c.ProSedeNavigation).Where(c => c.ProId == id).Where(c => c.ProEstado == est).OrderByDescending(a => a.ProId);
         }
-        public IQueryable<SedePrograma> gets(int id)
+        public IQueryable<SedePrograma> gets(int id,int est)
         {
-            return _context.SedeProgramas.Include(c => c.ProSedeNavigation).Where(c => c.ProSede == id).OrderByDescending(a => a.ProId);
+            return _context.SedeProgramas.Include(c => c.ProSedeNavigation).Where(c => c.ProSede == id).Where(c => c.ProEstado == est).OrderByDescending(a => a.ProId);
+        }
+        public IQueryable<SedePrograma> getis(int id, int est)
+        {
+            return _context.SedeProgramas.Include(c => c.ProSedeNavigation).Where(c => c.ProUniversidad == id).Where(c => c.ProEstado == est).OrderByDescending(a => a.ProId);
         }
     }
 }

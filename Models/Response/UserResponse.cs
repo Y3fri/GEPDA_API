@@ -7,5 +7,8 @@
         public int? UsuRol { get; set; }
         public int? UsuUniversidad { get; set; }
         public int? UsuSede { get; set; }
+        public int? UsuPrograma { get; set; }
+        public int? UsuEstado { get; set; }
+
     }
 }

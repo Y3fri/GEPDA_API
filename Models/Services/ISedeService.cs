@@ -4,7 +4,7 @@
     {
 
         public IQueryable<UniversidadSede> get();
-        public IQueryable<UniversidadSede> get(int id);
-        public IQueryable<UniversidadSede> gets(int id);
+        public IQueryable<UniversidadSede> get(int id,int est);
+        public IQueryable<UniversidadSede> gets(int id,int est);
     }
 }

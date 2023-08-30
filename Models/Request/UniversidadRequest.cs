@@ -9,6 +9,7 @@
         public string UniDireccionPrincipal { get; set; } = null!;
         public string UniTelefonoPrincipal { get; set; } = null!;
         public string UniLogo { get; set; } = null!;
-        
+        public int UniEstado { get; set; }
+
     }
 }

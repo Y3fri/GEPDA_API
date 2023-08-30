@@ -14,6 +14,8 @@ namespace GEPDA_API.Models
         public string? IaOpcionC { get; set; }
         public string? IaOpcionD { get; set; }
         public string? IaImagen { get; set; }
+        public string? IaAudio { get; set; }
+        public string? IaRespuesta { get; set; }
         public int? IaEstado { get; set; }
 
         public virtual Estado? IaEstadoNavigation { get; set; }

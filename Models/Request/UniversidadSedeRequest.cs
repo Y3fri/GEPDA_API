@@ -8,5 +8,6 @@
         public string SedEmail { get; set; } = null!;
         public string SedDireccion { get; set; } = null!;
         public string SedTelefono { get; set; } = null!;
+        public int SedEstado { get; set; }
     }
 }

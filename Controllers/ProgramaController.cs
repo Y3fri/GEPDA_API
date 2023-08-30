@@ -39,15 +39,15 @@ namespace GEPDA_API.Controllers
             return Ok(oRespuesta);
         }
 
-        [HttpGet("{Id}/Programa")]
-        public IActionResult Get(int Id)
+        [HttpGet("{Id}/Programa/{Est}")]
+        public IActionResult Get(int Id, int Est)
         {
             Respuesta oRespuesta = new Respuesta();
 
             try
             {
 
-                oRespuesta.Data = _programaService.get(Id);
+                oRespuesta.Data = _programaService.get(Id,Est);
                 oRespuesta.Exito = 1;
 
 
@@ -59,16 +59,35 @@ namespace GEPDA_API.Controllers
             return Ok(oRespuesta);
         }
 
-
-        [HttpGet("{Id}/Sede")]
-        public IActionResult Gets(int Id)
+        [HttpGet("{Id}/Sede/{Est}")]
+        public IActionResult Gets(int Id, int Est)
         {
             Respuesta oRespuesta = new Respuesta();
 
             try
             {
 
-                oRespuesta.Data = _programaService.gets(Id);
+                oRespuesta.Data = _programaService.gets(Id, Est);
+                oRespuesta.Exito = 1;
+
+
+            }
+            catch (Exception ex)
+            {
+                oRespuesta.Mensaje = ex.Message;
+            }
+            return Ok(oRespuesta);
+        }
+
+        [HttpGet("{Id}/Universidad/{Est}")]
+        public IActionResult Getis(int Id,int Est)
+        {
+            Respuesta oRespuesta = new Respuesta();
+
+            try
+            {
+
+                oRespuesta.Data = _programaService.getis(Id,Est);
                 oRespuesta.Exito = 1;
 
 
@@ -91,8 +110,10 @@ namespace GEPDA_API.Controllers
                 {
                     SedePrograma oSP = new SedePrograma();
                     oSP.ProSede = oModel.ProSede;
+                    oSP.ProUniversidad = oModel.ProUniversidad;
                     oSP.ProNombre = oModel.ProNombre;
                     oSP.ProDescripcion = oModel.ProDescripcion;
+                    oSP.ProEstado = oModel.ProEstado;
                     db.SedeProgramas.Add(oSP);
                     db.SaveChanges();
                     oRespuesta.Exito = 1;
@@ -118,8 +139,10 @@ namespace GEPDA_API.Controllers
                 {
                     SedePrograma oSP = db.SedeProgramas.Find(oModel.ProId);
                     oSP.ProSede = oModel.ProSede;
+                    oSP.ProUniversidad = oModel.ProUniversidad;
                     oSP.ProNombre = oModel.ProNombre;
                     oSP.ProDescripcion = oModel.ProDescripcion;
+                    oSP.ProEstado = oModel.ProEstado;
                     db.Entry(oSP).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
                     oRespuesta.Exito = 1;
@@ -134,31 +157,5 @@ namespace GEPDA_API.Controllers
             return Ok(oRespuesta);
         }
 
-
-
-        [HttpDelete("{Id}")]
-        [Authorize]
-        public IActionResult Delete(int Id)
-        {
-            Respuesta oRespuesta = new Respuesta();
-
-            try
-            {
-                using (GEPDA_BDContext db = new GEPDA_BDContext())
-                {
-                    SedePrograma oMM = db.SedeProgramas.Find(Id);
-                    db.Remove(oMM);
-                    db.SaveChanges();
-                    oRespuesta.Exito = 1;
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                oRespuesta.Mensaje = ex.Message;
-            }
-            return Ok(oRespuesta);
-        }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using GEPDA_API.Models;
+using GEPDA_API.Models.Request;
 using GEPDA_API.Models.Response;
 using GEPDA_API.Models.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,42 +25,10 @@ namespace GEPDA_API.Controllers
 
             try
             {
-                
+
                 oRespuesta.Data = _aspiranteEntrevista.Get(Id, Est);
 
-                using (var db = new GEPDA_BDContext())
-                {
-                    var entrevistasConPrograma = db.Entrevista
-                        .Include(e => e.EntProgramaNavigation) // Incluye la relación a SedePrograma
-                        .ToList();
 
-                    foreach (var entrevista in entrevistasConPrograma)
-                    {
-                        var aspirantesMismoPrograma = db.SedeProgramaAspirantes
-                            .Where(a => a.AspPrograma == entrevista.EntPrograma)
-                            .ToList();
-
-                        foreach (var aspirante in aspirantesMismoPrograma)
-                        {
-                            var relacionExistente = db.AspiranteEntrevista
-                                .Any(r => r.IdAspirante == aspirante.AspId && r.IdEntrevista == entrevista.EntId);
-
-                            if (!relacionExistente)
-                            {
-                                var nuevaRelacion = new AspiranteEntrevistum
-                                {
-                                    IdAspirante = aspirante.AspId,
-                                    IdEntrevista = entrevista.EntId,
-                                    Nota = null
-                                };
-
-                                db.AspiranteEntrevista.Add(nuevaRelacion);
-                            }
-                        }
-                    }
-
-                    db.SaveChanges();
-                }
                 oRespuesta.Exito = 1;
             }
             catch (Exception ex)
@@ -69,6 +39,74 @@ namespace GEPDA_API.Controllers
             return Ok(oRespuesta);
         }
 
+        [HttpGet("{idAspirante}")]
+        public IActionResult GetInterviews(int idAspirante)
+        {
+            Respuesta oRespuesta = new Respuesta();
+            try
+            {
+                using (GEPDA_BDContext db = new GEPDA_BDContext())
+                {
+
+                    oRespuesta.Data = _aspiranteEntrevista.Gets(idAspirante);
+                    oRespuesta.Exito = 1;
+
+                }
+            }
+            catch (Exception ex)
+            {
+                oRespuesta.Mensaje = ex.Message;
+            }
+            return Ok(oRespuesta);
+        }
+
+        [HttpPut]
+        [Authorize]
+        public IActionResult Edit(AspiranteEntrevistaRequest oModel)
+        {
+            Respuesta oRespuesta = new Respuesta();
+            try
+            {
+                using (GEPDA_BDContext db = new GEPDA_BDContext())
+                {
+                    AspiranteEntrevistum oPC = db.AspiranteEntrevista.Find(oModel.Id);
+                    oPC.IdEntrevista = oModel.IdEntrevista;
+                    oPC.IdAspirante = oModel.IdAspirante;
+                    oPC.Nota = oModel.Nota;
+                    oPC.FechaEntre = DateTime.Now.ToString("yyyy/MM/dd 'Hora' HH:mm");
+                    db.Entry(oPC).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    db.SaveChanges();
+                    oRespuesta.Exito = 1;
+
+                    // Buscar todas las entrevistas del mismo aspirante
+                    List<AspiranteEntrevistum> entrevistasDelMismoAspirante = db.AspiranteEntrevista
+                        .Where(e => e.IdAspirante == oModel.IdAspirante)
+                        .ToList();
+
+                    // Calcular el promedio de las notas
+                    double? sumaNotas = 0;
+                    foreach (var entrevista in entrevistasDelMismoAspirante)
+                    {
+                        sumaNotas += entrevista.Nota;
+                    }
+                    double? promedioNotas = entrevistasDelMismoAspirante.Count > 0
+                    ? sumaNotas / entrevistasDelMismoAspirante.Count
+                    : null; // Si no hay entrevistas, el promedio será nulo
+
+                    SedeProgramaAspirante oP = db.SedeProgramaAspirantes.SingleOrDefault(e => e.AspId == oModel.IdAspirante);
+                    oP.AspPromedioEntrevista = promedioNotas;
+                    db.Entry(oP).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+                    db.SaveChanges();
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                oRespuesta.Mensaje = ex.Message;
+            }
+            return Ok(oRespuesta);
+        }
 
     }
 }

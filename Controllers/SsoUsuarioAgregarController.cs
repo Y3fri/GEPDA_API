@@ -53,6 +53,40 @@ namespace GEPDA_API.Controllers
             return Ok(oRespuesta);
         }
 
+        [HttpGet("{Id}/{Est}")]
+        public IActionResult Gets(int Id,int Est)
+        {
+            Respuesta oRespuesta = new Respuesta();
+
+            try
+            {
+                oRespuesta.Data = _ssoUsuarioAgregarService.gets(Id, Est);
+                oRespuesta.Exito = 1;
+            }
+            catch (Exception ex)
+            {
+                oRespuesta.Mensaje = ex.Message;
+            }
+            return Ok(oRespuesta);
+        }
+
+        [HttpGet("{Id}/Programa/{Est}")]
+        public IActionResult Getis(int Id, int Est)
+        {
+            Respuesta oRespuesta = new Respuesta();
+
+            try
+            {
+                oRespuesta.Data = _ssoUsuarioAgregarService.getis(Id, Est);
+                oRespuesta.Exito = 1;
+            }
+            catch (Exception ex)
+            {
+                oRespuesta.Mensaje = ex.Message;
+            }
+            return Ok(oRespuesta);
+        }
+
 
 
         [HttpPost]
@@ -67,6 +101,7 @@ namespace GEPDA_API.Controllers
                 {
                     SsoUsuario oUsu = new SsoUsuario();
                     oUsu.UsuRol = oModel.UsuRol;
+                    oUsu.UsuPrograma=oModel.UsuPrograma;
                     oUsu.UsuUniversidad = oModel.UsuUniversidad;
                     oUsu.UsuSede = oModel.UsuSede;
                     oUsu.UsuDocumento = oModel.UsuDocumento;
@@ -74,6 +109,7 @@ namespace GEPDA_API.Controllers
                     oUsu.UsuEmail = oModel.UsuEmail;
                     oUsu.UsuApellido = oModel.UsuApellido;
                     oUsu.UsuNickname = oModel.UsuNickname;
+                    oUsu.UsuEstado = oModel.UsuEstado;
                     oUsu.UsuClave = Encrypt.GetSHA256(oModel.UsuClave);
                     db.SsoUsuarios.Add(oUsu);
                     db.SaveChanges();
@@ -102,6 +138,7 @@ namespace GEPDA_API.Controllers
                     SsoUsuario oUsu = db.SsoUsuarios.Find(oModel.UsuId);
                     oUsu.UsuRol = oModel.UsuRol;
                     oUsu.UsuUniversidad = oModel.UsuUniversidad;
+                    oUsu.UsuPrograma = oModel.UsuPrograma;
                     oUsu.UsuSede = oModel.UsuSede;
                     oUsu.UsuEmail = oModel.UsuEmail;
                     oUsu.UsuDocumento = oModel.UsuDocumento;
@@ -109,7 +146,7 @@ namespace GEPDA_API.Controllers
                     oUsu.UsuApellido = oModel.UsuApellido;
                     oUsu.UsuNickname = oModel.UsuNickname;
                     oUsu.UsuClave = oModel.UsuClave;
-
+                    oUsu.UsuEstado = oModel.UsuEstado;
                     db.Entry(oUsu).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
                     oRespuesta.Exito = 1;
@@ -126,30 +163,5 @@ namespace GEPDA_API.Controllers
 
 
 
-        [HttpDelete("{Id}")]
-        [Authorize]
-
-        public IActionResult Delete(int Id)
-        {
-            Respuesta oRespuesta = new Respuesta();
-
-            try
-            {
-                using (GEPDA_BDContext db = new GEPDA_BDContext())
-                {
-                    SsoUsuario oUsu = db.SsoUsuarios.Find(Id);
-                    db.Remove(oUsu);
-                    db.SaveChanges();
-                    oRespuesta.Exito = 1;
-                }
-
-            }
-            catch (Exception ex)
-            {
-
-                oRespuesta.Mensaje = ex.Message;
-            }
-            return Ok(oRespuesta);
-        }
     }
 }

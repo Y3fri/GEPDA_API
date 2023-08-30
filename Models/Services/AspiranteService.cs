@@ -12,9 +12,7 @@ namespace GEPDA_API.Models.Services
         }
         public IQueryable<SedeProgramaAspirante> get()
         {
-            return _context.SedeProgramaAspirantes.Include(c => c.AspMunicipioNavigation)
-                .Include(c=>c.AspDniNavigation)
-                .Include(c=>c.AspSedeNavigation)
+            return _context.SedeProgramaAspirantes.Include(c => c.AspMunicipioNavigation)                                
                 .Include(c=>c.AspProgramaNavigation)
                 .OrderByDescending(a => a.AspId);
         }
