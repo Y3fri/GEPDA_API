@@ -93,6 +93,7 @@ namespace GEPDA_API.Controllers
                 using (GEPDA_BDContext db = new GEPDA_BDContext())
                 {
                     SedeProgramaAspirante oPC = new SedeProgramaAspirante();
+                    oPC.AspUniversidad = oModel.AspUniversidad;
                     oPC.AspSede = oModel.AspSede;
                     oPC.AspPrograma = oModel.AspPrograma;
                     oPC.AspDni = oModel.AspDni;
@@ -105,7 +106,8 @@ namespace GEPDA_API.Controllers
                     oPC.AspTelefono= oModel.AspTelefono;
                     oPC.AspPromedioPruebaIa = oModel.AspPromedioPruebaIa;
                     oPC.AspPromedioEntrevista = oModel.AspPromedioEntrevista;
-                    oPC.AspPromedioPruebaMate = oModel.AspPromedioPruebaMate;
+                    oPC.AspPromedioPrueba2 = oModel.AspPromedioPrueba2;
+                    oPC.AspNotaFinal = oModel.AspNotaFinal;
                     oPC.AspEstado = oModel.AspEstado;
                     db.SedeProgramaAspirantes.Add(oPC);
                     db.SaveChanges();
@@ -161,6 +163,7 @@ namespace GEPDA_API.Controllers
                 using (GEPDA_BDContext db = new GEPDA_BDContext())
                 {
                     SedeProgramaAspirante oPC = db.SedeProgramaAspirantes.Find(oModel.AspId);
+                    oPC.AspUniversidad = oModel.AspUniversidad;
                     oPC.AspSede = oModel.AspSede;
                     oPC.AspPrograma = oModel.AspPrograma;
                     oPC.AspDni = oModel.AspDni;
@@ -173,7 +176,8 @@ namespace GEPDA_API.Controllers
                     oPC.AspTelefono = oModel.AspTelefono;
                     oPC.AspPromedioPruebaIa = oModel.AspPromedioPruebaIa;
                     oPC.AspPromedioEntrevista = oModel.AspPromedioEntrevista;
-                    oPC.AspPromedioPruebaMate = oModel.AspPromedioPruebaMate;
+                    oPC.AspPromedioPrueba2 = oModel.AspPromedioPrueba2;
+                    oPC.AspNotaFinal = oModel.AspNotaFinal;
                     oPC.AspEstado = oModel.AspEstado;
                     db.Entry(oPC).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     db.SaveChanges();
