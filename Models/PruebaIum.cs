@@ -6,6 +6,7 @@ namespace GEPDA_API.Models
     public partial class PruebaIum
     {
         public int IaId { get; set; }
+        public int IaUniversidad { get; set; }
         public string? IaTitulo { get; set; }
         public string? IaTexto { get; set; }
         public string? IaPregunta { get; set; }
@@ -19,5 +20,6 @@ namespace GEPDA_API.Models
         public int? IaEstado { get; set; }
 
         public virtual Estado? IaEstadoNavigation { get; set; }
+        public virtual InformacionUniversidad IaUniversidadNavigation { get; set; } = null!;
     }
 }

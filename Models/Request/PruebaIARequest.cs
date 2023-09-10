@@ -3,6 +3,7 @@
     public class PruebaIARequest
     {
         public int IaId { get; set; }
+        public int IaUniversidad { get; set; }
         public string? IaTitulo { get; set; }
         public string? IaTexto { get; set; }
         public string? IaPregunta { get; set; }

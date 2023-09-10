@@ -9,8 +9,8 @@ namespace GEPDA_API.Models
         {
             Entrevista = new HashSet<Entrevistum>();
             InformacionUniversidads = new HashSet<InformacionUniversidad>();
+            Prueba2s = new HashSet<Prueba2>();
             PruebaIa = new HashSet<PruebaIum>();
-            PruebaMatematicas = new HashSet<PruebaMatematica>();
             SedeProgramaAspirantes = new HashSet<SedeProgramaAspirante>();
             SedeProgramas = new HashSet<SedePrograma>();
             SsoUsuarios = new HashSet<SsoUsuario>();
@@ -22,8 +22,8 @@ namespace GEPDA_API.Models
 
         public virtual ICollection<Entrevistum> Entrevista { get; set; }
         public virtual ICollection<InformacionUniversidad> InformacionUniversidads { get; set; }
+        public virtual ICollection<Prueba2> Prueba2s { get; set; }
         public virtual ICollection<PruebaIum> PruebaIa { get; set; }
-        public virtual ICollection<PruebaMatematica> PruebaMatematicas { get; set; }
         public virtual ICollection<SedeProgramaAspirante> SedeProgramaAspirantes { get; set; }
         public virtual ICollection<SedePrograma> SedeProgramas { get; set; }
         public virtual ICollection<SsoUsuario> SsoUsuarios { get; set; }

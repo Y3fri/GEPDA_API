@@ -11,6 +11,7 @@ namespace GEPDA_API.Models
         }
 
         public int AspId { get; set; }
+        public int AspUniversidad { get; set; }
         public int AspSede { get; set; }
         public int AspPrograma { get; set; }
         public int AspDni { get; set; }
@@ -23,7 +24,8 @@ namespace GEPDA_API.Models
         public string AspDireccion { get; set; } = null!;
         public double? AspPromedioPruebaIa { get; set; }
         public double? AspPromedioEntrevista { get; set; }
-        public double? AspPromedioPruebaMate { get; set; }
+        public double? AspPromedioPrueba2 { get; set; }
+        public double? AspNotaFinal { get; set; }
         public int? AspEstado { get; set; }
 
         public virtual DniTipo AspDniNavigation { get; set; } = null!;
@@ -31,6 +33,7 @@ namespace GEPDA_API.Models
         public virtual DepartamentoMunicipio AspMunicipioNavigation { get; set; } = null!;
         public virtual SedePrograma AspProgramaNavigation { get; set; } = null!;
         public virtual UniversidadSede AspSedeNavigation { get; set; } = null!;
+        public virtual InformacionUniversidad AspUniversidadNavigation { get; set; } = null!;
         public virtual ICollection<AspiranteEntrevistum> AspiranteEntrevista { get; set; }
     }
 }
